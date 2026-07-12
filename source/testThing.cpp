@@ -2,7 +2,7 @@
 #include "testThing.h"
 #include "engine.h"
 #include "controls.h"
-#include "terrence.h"
+#include "terrencewiianim.h"
 
 void Test::init() {
     Thing::init();
@@ -28,12 +28,16 @@ void Test::update(float dt) {
     if (controls.down) {
         y += spd;
     }
+    frame += 1;
+    if (frame >= head_animation.frame_count) {
+        frame = 0;
+    }
 }
 
 void Test::draw() {
     Thing::draw();
     engine.Begin3D();
-    engine.DrawMesh(head_mesh, x, y, z);
+    engine.DrawAnimFrame(head_animation, frame, x, y, z);
     engine.End3D();
     engine.print("I AM IN PAIN");
 }

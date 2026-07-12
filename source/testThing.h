@@ -12,6 +12,7 @@ public:
     float y = 0;
     float z = -2000;
     float spd = 0.1;
+    int frame = 0;
 };
 
 #endif

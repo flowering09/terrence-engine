@@ -29,7 +29,7 @@ void Test::update(float dt) {
         y += spd;
     }
     frame += 1;
-    if (frame >= head_animation.frame_count) {
+    if (frame >= terrencewiianim_animation.frame_count) {
         frame = 0;
     }
 }
@@ -37,7 +37,7 @@ void Test::update(float dt) {
 void Test::draw() {
     Thing::draw();
     engine.Begin3D();
-    engine.DrawAnimFrame(head_animation, frame, x, y, z);
+    engine.DrawAnimFrame(terrencewiianim_animation, frame, x, y, z);
     engine.End3D();
     engine.print("I AM IN PAIN");
 }

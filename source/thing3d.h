@@ -9,5 +9,9 @@ class Thing3D : public Thing {
         void load(Loadable args) override;
         float x = 0;
         float y = 0;
-        float z = -2000;
+        float z = 0;
+
+        float xFinal = 0;
+        float yFinal = 0;
+        float zFinal = -2000;
 };

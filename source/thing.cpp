@@ -41,4 +41,8 @@ void Thing::draw() {
     }
 }
 
+void Thing::load(Loadable)
+{
+}
+
 REGISTER_THING(Thing, "Thing");

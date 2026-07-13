@@ -8,4 +8,6 @@ struct Loadable {
 
     MeshAnimation* animatedMesh = nullptr;
     Mesh* mesh = nullptr;
+
+    const char* text;
 };

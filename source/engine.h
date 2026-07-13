@@ -6,7 +6,7 @@
 #include "thing2d.h"
 class Engine {
     public:
-        void Init(Thing3D* root3, Thing2D* root2);
+        void Init(Thing3D* root3, Thing2D* root2, Thing2D* rootui);
         void print(const char*);
         void DrawMesh(
             Mesh& mesh,
@@ -30,9 +30,10 @@ class Engine {
         );
         void Begin3D();
         void End3D();
-        bool in3D;
+        bool in3D = false;
         Thing3D* root3d;
         Thing2D* root2d;
+        Thing2D* rootUI;
     private:
         GRRLIB_texImg *tex_font;
 

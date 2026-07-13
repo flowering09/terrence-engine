@@ -15,7 +15,7 @@ void Thing2D::draw() {
     Thing::draw();
 }
 
-void Thing2d::load(Loadable args) {
+void Thing2D::load(Loadable args) {
     x = args.x;
     y = args.y;
 }

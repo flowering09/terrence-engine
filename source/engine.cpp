@@ -5,7 +5,7 @@
 #include "meshanimation.h"
 #include <string>
 
-void Engine::Init(Thing3D* root3, Thing2D* root2)
+void Engine::Init(Thing3D* root3, Thing2D* root2, Thing2D* rootui)
 {
     tex_font = GRRLIB_LoadTexture(font_png);
     GRRLIB_InitTileSet(tex_font, 16, 16, 32);
@@ -29,6 +29,7 @@ void Engine::Init(Thing3D* root3, Thing2D* root2)
     
     root3d = root3;
     root2d = root2;
+    rootUI = rootui;
 }
 
 void Engine::print(const char *text)

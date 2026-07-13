@@ -23,15 +23,27 @@ int main(int argc, char **argv)
     Thing *root = ThingFactory::create("Thing");
     Thing *root3d = ThingFactory::create("Thing3D");
     Thing *root2d = ThingFactory::create("Thing2D");
+    Thing *rootUI = ThingFactory::create("Thing2D");
     Thing *mesh = ThingFactory::create("AnimatedMesh");
+    Thing *cam = ThingFactory::create("DebugCamera");
+    Thing *txt = ThingFactory::create("DebugText");
+
     root3d->addChild(mesh);
     Loadable l;
-    l.animatedMesh = terrencewiianim_animation;
+    l.animatedMesh = &terrencewiianim_animation;
     mesh->load(l);
+
+    rootUI->addChild(txt);
+    Loadable lT;
+    lT.text = "TERRENCE ENGINE";
+    txt->load(lT);
+
     root->addChild(root3d);
     root->addChild(root2d);
+    root->addChild(rootUI);
+    root->addChild(cam);
 
-    engine.Init(root3d, root2d);
+    engine.Init(dynamic_cast<Thing3D*>(root3d), dynamic_cast<Thing2D*>(root2d), dynamic_cast<Thing2D*>(rootUI));
     root->init();
 
     // Loop forever

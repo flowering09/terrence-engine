@@ -1,6 +1,7 @@
 #include "thing3d.h"
 #include "thing_factory.h"
 #include "engine.h"
+#include "camera3d.h"
 
 void Thing3D::init() {
     Thing::init();
@@ -8,10 +9,13 @@ void Thing3D::init() {
 
 void Thing3D::update(float dt) {
     Thing::update(dt);
+    xFinal = x - cam3d.x;
+    yFinal = y - cam3d.y;
+    zFinal = z - cam3d.z;
 }
 
 void Thing3D::draw() {
-    engine.Begin3d();
+    engine.Begin3D();
     Thing::draw();
 }
 

@@ -11,6 +11,7 @@
 #include "engine.h"
 #include "controls.h"
 #include "thing_factory.h"
+#include "terrencewiianim.h"
 
 int main(int argc, char **argv)
 {
@@ -18,10 +19,21 @@ int main(int argc, char **argv)
     GRRLIB_Init();
     // Initialise the Wiimotes
     WPAD_Init();
-    engine.Init();
+
     Thing *root = ThingFactory::create("Thing");
-    Thing *obj = ThingFactory::create("Test");
-    root->addChild(obj);
+    Thing *root3d = ThingFactory::create("Thing3D");
+    Thing *root2d = ThingFactory::create("Thing2D");
+    Thing *mesh = ThingFactory::create("AnimatedMesh");
+    root3d->addChild(mesh);
+    Loadable l;
+    l.animatedMesh = terrencewiianim_animation;
+    mesh->load(l);
+    root->addChild(root3d);
+    root->addChild(root2d);
+
+    engine.Init(root3d, root2d);
+    root->init();
+
     // Loop forever
     while (1)
     {

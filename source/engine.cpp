@@ -5,7 +5,7 @@
 #include "meshanimation.h"
 #include <string>
 
-void Engine::Init()
+void Engine::Init(Thing3D* root3, Thing2D* root2)
 {
     tex_font = GRRLIB_LoadTexture(font_png);
     GRRLIB_InitTileSet(tex_font, 16, 16, 32);
@@ -26,6 +26,9 @@ void Engine::Init()
     GX_SetNumTexGens(0);
     GX_SetNumTevStages(1);
     GX_SetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+    
+    root3d = root3;
+    root2d = root2;
 }
 
 void Engine::print(const char *text)
@@ -242,17 +245,23 @@ void Engine::DrawAnimFrame(
 
 void Engine::Begin3D()
 {
-    GRRLIB_3dMode(
-        45.0f,
-        50000.0f,
-        0.1f,
-        true,
-        true);
+    if (!in3D) {
+        GRRLIB_3dMode(
+            45.0f,
+            50000.0f,
+            0.1f,
+            true,
+            true);
+        in3D = true;
+    }
 }
 
 void Engine::End3D()
 {
-    GRRLIB_2dMode();
+    if (in3D) {
+        GRRLIB_2dMode();
+        in3D = false;
+    }
 }
 
 Engine engine;

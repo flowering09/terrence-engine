@@ -17,13 +17,14 @@ void AnimatedMesh::update(float dt) {
 }
 
 void AnimatedMesh::draw() {
-    engine.DrawAnimFrame(mesh, frame, xFinal, yFinal, zFinal);
+    engine.DrawAnimFrame(mesh, frame, xFinal, yFinal, zFinal, mat);
     Thing3D::draw();
 }
 
 void AnimatedMesh::load(Loadable args) {
     Thing3D::load(args);
     mesh = *args.animatedMesh;
+    mat = args.mat;
 }
 
 REGISTER_THING(AnimatedMesh, "AnimatedMesh");

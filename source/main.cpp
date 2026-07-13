@@ -12,6 +12,9 @@
 #include "controls.h"
 #include "thing_factory.h"
 #include "terrencewiianim.h"
+#include "cube.h"
+#include "cube-anim.h"
+#include "flowery_png.h"
 
 int main(int argc, char **argv)
 {
@@ -24,14 +27,31 @@ int main(int argc, char **argv)
     Thing *root3d = ThingFactory::create("Thing3D");
     Thing *root2d = ThingFactory::create("Thing2D");
     Thing *rootUI = ThingFactory::create("Thing2D");
-    Thing *mesh = ThingFactory::create("AnimatedMesh");
+    Thing *animMesh = ThingFactory::create("AnimatedMesh");
+    Thing *animMesh2 = ThingFactory::create("AnimatedMesh");
+    Thing *mesh = ThingFactory::create("MeshRenderer");
     Thing *cam = ThingFactory::create("DebugCamera");
     Thing *txt = ThingFactory::create("DebugText");
 
-    root3d->addChild(mesh);
+    root3d->addChild(animMesh);
     Loadable l;
     l.animatedMesh = &terrencewiianim_animation;
-    mesh->load(l);
+    animMesh->load(l);
+
+    root3d->addChild(mesh);
+    Loadable l2;
+    l2.mesh = &cube_mesh;
+    Material mat = Material();
+    mat.texture = GRRLIB_LoadTexture(flowery_png);
+    mat.textured = true;
+    l2.mat = mat;
+    mesh->load(l2);
+
+    root3d->addChild(animMesh2);
+    Loadable l3;
+    l3.mat = mat;
+    l3.animatedMesh = &cube_anim_animation;
+    animMesh2->load(l3);
 
     rootUI->addChild(txt);
     Loadable lT;
@@ -43,7 +63,7 @@ int main(int argc, char **argv)
     root->addChild(rootUI);
     root->addChild(cam);
 
-    engine.Init(dynamic_cast<Thing3D*>(root3d), dynamic_cast<Thing2D*>(root2d), dynamic_cast<Thing2D*>(rootUI));
+    engine.Init(dynamic_cast<Thing3D *>(root3d), dynamic_cast<Thing2D *>(root2d), dynamic_cast<Thing2D *>(rootUI));
     root->init();
 
     // Loop forever
@@ -68,7 +88,6 @@ int main(int argc, char **argv)
         // Place your drawing code here
         root->update(0);
         root->draw();
-        // ---------------------------------------------------------------------
 
         GRRLIB_Render(); // Render the frame buffer to the TV
     }

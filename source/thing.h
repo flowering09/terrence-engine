@@ -16,7 +16,7 @@ public:
     void addChild(Thing* child);
     void removeChild(Thing* child);
 
-
-protected:
+    const char* name;
+    
     std::vector<Thing*> children;
 };

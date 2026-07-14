@@ -1,3 +1,4 @@
 *.elf
 *.dol
 build/
+source/game/

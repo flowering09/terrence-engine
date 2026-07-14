@@ -16,10 +16,31 @@
 #include "game/terrence.h"
 
 
+#include <ogc/lwp_watchdog.h>
+
+u64 lastTime;
+
+void Timer_Init()
+{
+    lastTime = gettime();
+}
+
+float GetDeltaTime()
+{
+    u64 current = gettime();
+
+    float dt = (float)(current - lastTime) / TB_TIMER_CLOCK;
+    
+    lastTime = current;
+
+    return dt;
+}
+
 int main(int argc, char **argv)
 {
     GRRLIB_Init();
     WPAD_Init();
+    Timer_Init();
 
     Thing *root = ThingFactory::create("Thing");
 
@@ -61,7 +82,7 @@ int main(int argc, char **argv)
         controls.left = (WPAD_ButtonsHeld(0) & WPAD_BUTTON_LEFT);
         controls.right = (WPAD_ButtonsHeld(0) & WPAD_BUTTON_RIGHT);
 
-        root->update(0);
+        root->update(GetDeltaTime());
         root->draw();
 
         GRRLIB_Render();

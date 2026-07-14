@@ -25,5 +25,11 @@ void Thing3D::load(Loadable args) {
     z = args.z;
 }
 
+void Thing3D::setPosition(int x2, int y2, int z2) {
+    x = x2;
+    y = y2;
+    z = z2;
+}
+
 
 REGISTER_THING(Thing3D, "Thing3D");

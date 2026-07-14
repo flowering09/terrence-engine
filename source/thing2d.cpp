@@ -20,5 +20,10 @@ void Thing2D::load(Loadable args) {
     y = args.y;
 }
 
+void Thing2D::setPosition(int x2, int y2) {
+    x = x2;
+    y = y2;
+}
+
 
 REGISTER_THING(Thing2D, "Thing2D");

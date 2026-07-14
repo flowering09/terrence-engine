@@ -1,3 +1,5 @@
+#pragma once
+
 #include "thing.h"
 
 class DebugCamera : public Thing {

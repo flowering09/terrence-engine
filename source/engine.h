@@ -1,3 +1,5 @@
+#pragma once
+
 #include <grrlib.h>
 #include "mesh.h"
 #include "transform.h"

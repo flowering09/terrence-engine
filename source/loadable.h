@@ -1,3 +1,5 @@
+#pragma once
+
 #include "meshanimation.h"
 #include "mesh.h"
 #include "material.h"

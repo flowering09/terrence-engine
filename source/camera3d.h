@@ -1,3 +1,5 @@
+#pragma once
+
 class Camera3D {
     public:
         float x = 0;

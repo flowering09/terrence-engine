@@ -1,3 +1,5 @@
+#pragma once
+
 class Controls {
     public:
         bool left;

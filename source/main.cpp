@@ -4,6 +4,9 @@
 
 #include "vertex.h"
 #include "meshanimation.h"
+#include "animatedMesh.h"
+#include "meshRenderer.h"
+#include "debugCamera.h"
 
 #include "engine.h"
 #include "controls.h"

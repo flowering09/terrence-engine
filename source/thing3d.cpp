@@ -20,9 +20,7 @@ void Thing3D::draw() {
 }
 
 void Thing3D::load(Loadable args) {
-    x = args.x;
-    y = args.y;
-    z = args.z;
+    
 }
 
 void Thing3D::setPosition(int x2, int y2, int z2) {

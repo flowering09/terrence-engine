@@ -3,10 +3,6 @@
 #include "material.h"
 
 struct Loadable {
-    float x;
-    float y;
-    float z;
-
     MeshAnimation* animatedMesh = nullptr;
     Mesh* mesh = nullptr;
     Material mat = Material();

@@ -16,8 +16,7 @@ void Thing2D::draw() {
 }
 
 void Thing2D::load(Loadable args) {
-    x = args.x;
-    y = args.y;
+    
 }
 
 void Thing2D::setPosition(int x2, int y2) {

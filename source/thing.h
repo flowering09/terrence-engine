@@ -17,6 +17,9 @@ public:
     void removeChild(Thing* child);
 
     const char* name;
+    bool visible = true;
+
+    void setVisible(bool vis);
     
     std::vector<Thing*> children;
 };

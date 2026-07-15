@@ -36,9 +36,15 @@ void Thing::update(float dt) {
 
 
 void Thing::draw() {
-    for (Thing* child : children) {
-        child->draw();
+    if (visible) {
+        for (Thing* child : children) {
+            child->draw();
+        }
     }
+}
+
+void Thing::setVisible(bool vis) {
+    visible = vis;
 }
 
 void Thing::load(Loadable)

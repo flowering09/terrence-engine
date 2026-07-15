@@ -4,6 +4,8 @@
 #include "font_png.h"
 #include "meshanimation.h"
 #include <string>
+#include <math.h>
+#define DEG2RAD(x) ((x) * (M_PI / 180.0f))
 
 void Engine::Init(Thing3D *root3, Thing2D *root2, Thing2D *rootui)
 {
@@ -30,6 +32,56 @@ void Engine::Init(Thing3D *root3, Thing2D *root2, Thing2D *rootui)
     root3d = root3;
     root2d = root2;
     rootUI = rootui;
+}
+
+static inline void TransformVertex(
+    const Vertex &in,
+    const Transform &t,
+    float &x,
+    float &y,
+    float &z)
+{
+    // Scale
+    x = in.x * t.scale.x;
+    y = in.y * t.scale.y;
+    z = in.z * t.scale.z;
+
+    
+    float rx = DEG2RAD(t.rotation.x);
+    float ry = DEG2RAD(t.rotation.y);
+    float rz = DEG2RAD(t.rotation.z);
+
+    float sx = sinf(rx);
+    float cx = cosf(rx);
+
+    float sy = sinf(ry);
+    float cy = cosf(ry);
+
+    float sz = sinf(rz);
+    float cz = cosf(rz);
+
+    {
+        float ny = y * cx - z * sx;
+        float nz = y * sx + z * cx;
+        y = ny;
+        z = nz;
+    }
+    {
+        float nx = x * cy + z * sy;
+        float nz = -x * sy + z * cy;
+        x = nx;
+        z = nz;
+    }
+
+    {
+        float nx = x * cz - y * sz;
+        float ny = x * sz + y * cz;
+        x = nx;
+        y = ny;
+    }
+    x += t.position.x;
+    y += t.position.y;
+    z += t.position.z;
 }
 
 void Engine::print(const char *text)
@@ -158,10 +210,10 @@ void Engine::DrawMesh(
     {
         Vertex &v = mesh.vertices[mesh.indices[i]];
 
-        GX_Position3f32(
-            v.x + transform.position.x,
-            v.y + transform.position.y,
-            v.z + transform.position.z);
+        float x, y, z;
+        TransformVertex(v, transform, x, y, z);
+
+        GX_Position3f32(x, y, z);
 
         GX_Color4u8(
             v.r,
@@ -294,12 +346,11 @@ void Engine::DrawAnimFrame(MeshAnimation &mesh, Transform transform, int frame, 
     for (unsigned int i = 0; i < mesh.index_count; i++)
     {
         Vertex &v = mesh.frames[frame][mesh.indices[i]];
-        ;
 
-        GX_Position3f32(
-            v.x + transform.position.x,
-            v.y + transform.position.y,
-            v.z + transform.position.z);
+        float x, y, z;
+        TransformVertex(v, transform, x, y, z);
+
+        GX_Position3f32(x, y, z);
 
         GX_Color4u8(
             v.r,

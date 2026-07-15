@@ -12,6 +12,12 @@ struct Loadable {
     float f1 = 0;
     float f2 = 0;
     float f3 = 0;
+    float f4 = 0;
+    float f5 = 0;
+    float f6 = 0;
+    float f7 = 0;
+    float f8 = 0;
+    float f9 = 0;
 
     const char* text;
     const char* forWhat;

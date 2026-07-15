@@ -18,7 +18,19 @@ void MeshRenderer::draw()
 {
     if (visible)
     {
-        engine.DrawMesh(mesh, xFinal, yFinal, zFinal, mat);
+        Transform t;
+        t.position.x = xFinal;
+        t.position.y = yFinal;
+        t.position.z = zFinal;
+
+        t.rotation.x = xRot + xRParent;
+        t.rotation.y = yRot + yRParent;
+        t.rotation.z = zRot + zRParent;
+
+        t.scale.x = 1;
+        t.scale.y = 1;
+        t.scale.z = 1;
+        engine.DrawMesh(mesh, t, mat);
         Thing3D::draw();
     }
 }

@@ -25,7 +25,10 @@ void MeshRenderer::draw()
 
 void MeshRenderer::load(Loadable args)
 {
-    Thing3D::load(args);
+    if (args.forWhat == "Thing3D") {
+        Thing3D::load(args);
+        return;
+    }
     mesh = *args.mesh;
     mat = args.mat;
 }

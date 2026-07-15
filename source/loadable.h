@@ -9,5 +9,10 @@ struct Loadable {
     Mesh* mesh = nullptr;
     Material mat = Material();
 
+    float f1 = 0;
+    float f2 = 0;
+    float f3 = 0;
+
     const char* text;
+    const char* forWhat;
 };

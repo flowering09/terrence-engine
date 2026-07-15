@@ -12,6 +12,10 @@ class Thing3D : public Thing {
         float y = 0;
         float z = 0;
 
+        float xParent = 0;
+        float yParent = 0;
+        float zParent = 0;
+
         float xFinal = 0;
         float yFinal = 0;
         float zFinal = -2000;

@@ -30,7 +30,10 @@ void AnimatedMesh::draw()
 
 void AnimatedMesh::load(Loadable args)
 {
-    Thing3D::load(args);
+    if (args.forWhat == "Thing3D") {
+        Thing3D::load(args);
+        return;
+    }
     mesh = *args.animatedMesh;
     mat = args.mat;
 }

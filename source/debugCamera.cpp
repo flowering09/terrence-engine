@@ -34,4 +34,8 @@ void DebugCamera::draw() {
     Thing::draw();
 }
 
+void DebugCamera::load(Loadable args) {
+
+}
+
 REGISTER_THING(DebugCamera, "DebugCamera");
